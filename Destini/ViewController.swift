@@ -9,7 +9,8 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    var storyIndex : Int = 1
+    
     // Our strings
     let story1 = "Your car has blown a tire on a winding road in the middle of nowhere with no cell phone reception. You decide to hitchhike. A rusty pickup truck rumbles to a stop next to you. A man with a wide brimmed hat with soulless eyes opens the passenger door for you and asks: \"Need a ride, boy?\"."
     let answer1a = "I\'ll hop in. Thanks for the help!"
@@ -42,17 +43,77 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         // TODO Step 3: Set the text for the storyTextView, topButton, bottomButton, and to T1_Story, T1_Ans1, and T1_Ans2
+        
+        let T1_Story = story1
+        storyTextView.text = T1_Story
+        
+        let T1_Ans1 = answer1a
+        topButton.setTitle(T1_Ans1, for: .normal)
+        
+        let T1_Ans2 = answer1b
+        bottomButton.setTitle(T1_Ans2, for: .normal)
+    
         
     }
 
     
     // User presses one of the buttons
     @IBAction func buttonPressed(_ sender: UIButton) {
-    
-        // TODO Step 4: Write an IF-Statement to update the views
+        
+        func makeChoice(index storyIndex : Int) {
+            if storyIndex == 3 {
+                let T1_Story = story3
+                storyTextView.text = T1_Story
                 
+                let T1_Ans1 = answer3a
+                topButton.setTitle(T1_Ans1, for: .normal)
+                
+                let T1_Ans2 = answer3b
+                bottomButton.setTitle(T1_Ans2, for: .normal)
+                
+                lastQuestion(newIndex: 3)
+                
+            } else if storyIndex == 2 {
+                let T1_Story = story2
+                storyTextView.text = T1_Story
+                
+                let T1_Ans1 = answer2a
+                topButton.setTitle(T1_Ans1, for: .normal)
+                
+                let T1_Ans2 = answer2b
+                bottomButton.setTitle(T1_Ans2, for: .normal)
+                
+                lastQuestion(newIndex: 2)
+            }
+            
+        
+        }
+        
+        
+        
+        // TODO Step 4: Write an IF-Statement to update the views
+        if sender.tag == 1 {
+            storyIndex = storyIndex + 2
+            makeChoice(index: storyIndex)
+            
+            
+        } else if sender.tag == 2 {
+            storyIndex = storyIndex + 1
+            makeChoice(index: storyIndex)
+        
+        }
+        
+        func lastQuestion(newIndex : Int) {
+            if sender.tag == 1 {
+                storyIndex = newIndex + 3
+                
+            } else if sender.tag == 2 {
+                storyIndex = newIndex + 2
+            }
+        }
+        
+        
         // TODO Step 6: Modify the IF-Statement to complete the story
         
     
